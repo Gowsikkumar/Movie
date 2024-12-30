@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movies</title>
+</head>
+<body>
+<h1>Movies</h1>
+
+<form th:action="@{/new}" th:object="${movie}" method="post">
+    <label for="movie">Movie Name</label>
+    <input type="text" th:field="*{movie}" required="required" /><br><br>
+
+    <label for="hero">Hero</label>
+    <input type="text" th:field="*{hero}" required="required" /><br><br>
+
+    <label for="gener">Genre</label>
+    <input type="text" th:field="*{gener}" required="required" /><br><br>
+
+    <label for="year">Year</label>
+    <input type="number" th:field="*{year}" required="required" /><br><br>
+
+    <button type="submit">Create</button>
+</form>
+
+<h2>Movie List</h2>
+<ul>
+    <li th:each="movie : ${movies}">
+        <span th:text="${movie.name}">Movie Name</span> |
+        <span th:text="${movie.hero}">Hero</span> |
+        <span th:text="${movie.gener}">Genre</span> |
+        <span th:text="${movie.year}">Year</span> |
+        <a th:href="@{/edit/{id}(id=${movie.id})}">Edit</a> |
+        <a th:href="@{/del/{id}(id=${movie.id})}">Delete</a>
+    </li>
+</ul>
+
+</body>
+</html>
